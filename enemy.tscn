@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://74hwudwr8fjn"]
+
+[ext_resource type="Script" uid="uid://cdfseirv0gy10" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://dhqrprlksswvu" path="res://lebron.jpeg" id="2_4gyqm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
+
+[node name="enemy" type="CharacterBody3D" groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61575, 0)
+script = ExtResource("1_4gyqm")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 1.0
+debug_use_custom = true
+debug_path_custom_color = Color(1, 1, 0, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("2_4gyqm")
+
+[node name="hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("BoxShape3D_4gyqm")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
