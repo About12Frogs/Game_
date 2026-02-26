@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Chromebook-test-2-main 2026-02-25 15-27-03"
+config/name="Chromebook-test-2-main"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
