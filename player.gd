@@ -1,6 +1,6 @@
 extends CharacterBody3D
 var alive = true
-
+var mouse_active = true
 @onready var neck = $neck
 @onready var camera = $neck/Camera3D
 const SPEED = 5.0
@@ -10,6 +10,8 @@ const MOUSE_SENS = 0.01
 func _ready() -> void:
 	SignalBus.enemydie.connect(_on_enemydie)
 	SignalBus.un_die.connect(_on_un_die)
+	SignalBus.menu_open.connect(_on_menu_open)
+	SignalBus.menu_close.connect(_on_menu_close)
 
 	
 func _on_enemydie():
@@ -41,8 +43,12 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+func _on_menu_open():
+	mouse_active = false
+func _on_menu_close():
+	mouse_active = true
 func _input(event: InputEvent) -> void:
-	if alive:
+	if alive and mouse_active:
 		if Input.is_action_just_pressed("ui.exit"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:

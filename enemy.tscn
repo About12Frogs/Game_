@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://74hwudwr8fjn"]
+[gd_scene load_steps=5 format=3 uid="uid://74hwudwr8fjn"]
 
 [ext_resource type="Script" uid="uid://cdfseirv0gy10" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://dhqrprlksswvu" path="res://lebron.jpeg" id="2_4gyqm"]
-[ext_resource type="AudioStream" uid="uid://kopq1uc24ee1" path="res://lebron-lebron-lebron-james-made-with-Voicemod.mp3" id="3_iifgy"]
+[ext_resource type="Texture2D" uid="uid://cpy2hlee3qg7h" path="res://icon.svg" id="2_iifgy"]
 [ext_resource type="Script" uid="uid://bylwrmat0nqly" path="res://audio_stream_player_3d.gd" id="4_iifgy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
@@ -19,7 +18,7 @@ debug_path_custom_color = Color(1, 1, 0, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
-texture = ExtResource("2_4gyqm")
+texture = ExtResource("2_iifgy")
 
 [node name="hitbox" type="Area3D" parent="."]
 
@@ -27,7 +26,7 @@ texture = ExtResource("2_4gyqm")
 shape = SubResource("BoxShape3D_4gyqm")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_iifgy")
+volume_db = 80.0
 autoplay = true
 script = ExtResource("4_iifgy")
 

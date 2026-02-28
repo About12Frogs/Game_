@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://brq644pndclw2"]
+
+[ext_resource type="Script" uid="uid://cx4i75g1hk4x3" path="res://nextbot_menu.gd" id="1_atqx0"]
+[ext_resource type="Texture2D" uid="uid://dhqrprlksswvu" path="res://lebron.jpeg" id="1_bin5s"]
+[ext_resource type="Texture2D" uid="uid://chk1jhw3n04aw" path="res://cat.jpeg" id="3_b4mak"]
+[ext_resource type="Texture2D" uid="uid://cypasburd35f0" path="res://billy.png" id="3_is68j"]
+
+[node name="Nextbot_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_atqx0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.477066, 0.477066, 0.477066, 1)
+
+[node name="lebron" type="Button" parent="."]
+layout_mode = 1
+offset_right = 339.0
+offset_bottom = 199.0
+text = "LEBRON
+
+Speed: 7.0"
+icon = ExtResource("1_bin5s")
+
+[node name="kitty" type="Button" parent="."]
+layout_mode = 1
+offset_top = 250.0
+offset_right = 354.0
+offset_bottom = 449.0
+text = "KITTY
+
+Speed: 6.0"
+icon = ExtResource("3_b4mak")
+
+[node name="billy" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -169.5
+offset_right = 169.5
+offset_bottom = 199.0
+grow_horizontal = 2
+text = "BILLY
+
+Speed: 8.5"
+icon = ExtResource("3_is68j")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 377.0
+offset_right = 455.0
+offset_bottom = 400.0
+
+[connection signal="pressed" from="lebron" to="." method="_on_lebron_pressed"]
+[connection signal="pressed" from="kitty" to="." method="_on_kitty_pressed"]
+[connection signal="pressed" from="billy" to="." method="_on_billy_pressed"]
