@@ -14,16 +14,23 @@ var bot = null
 	"""
 func _ready() -> void:
 	SignalBus.menu_close.connect(_on_menu_close)
+	SignalBus.enemydie.connect(_on_death)
 	
 func _on_menu_close():
 	queue_free() 
-func _on_lebron_pressed() -> void:
+"lebron1 billy2 cat3"
+
+func _on_death():
+	queue_free()
+func _on_lebron_pressed():
 	bot = 1
 	SignalBus.chosen_bot.emit(bot)
-func _on_billy_pressed() -> void:
+
+func _on_billy_pressed():
 	bot = 2
 	SignalBus.chosen_bot.emit(bot)
-func _on_kitty_pressed() -> void:
+
+func _on_cat_pressed():
 	bot = 3
 	SignalBus.chosen_bot.emit(bot)
 func _process(delta: float) -> void:

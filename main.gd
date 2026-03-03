@@ -56,6 +56,7 @@ func _on_enemydie():
 	add_child(uig)
 	is_spawned = false
 	playerpos.global_position = Vector3(0, 1, 0)
+	playerpos.global_rotation_degrees = Vector3(0, 180, 0)
 	player_alive = false
 	opened = false
 	timer_active = false

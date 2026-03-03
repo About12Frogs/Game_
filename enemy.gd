@@ -9,6 +9,7 @@ var lebron_img = preload("res://lebron.jpeg") #Importing files for different bot
 var kitty_img = preload("res://cat.jpeg")
 var lebron_mp: AudioStreamMP3 = preload("res://lebron-lebron-lebron-james-made-with-Voicemod.mp3")
 var kitty_mp: AudioStreamMP3 = preload("res://Voicy_Funky town (low quality).mp3")
+var billy_mp: AudioStreamMP3 = preload("res://soul-of-cinder-full-theme-song-made-with-Voicemod.mp3")
 var speed = 7.0
 func _ready() -> void:
 	if SignalBus.type == 1:
@@ -17,6 +18,7 @@ func _ready() -> void:
 		speed = 7.0
 	elif SignalBus.type == 2: #Probably couldve done this more efficiently but idc
 		sprite.texture = billy_img #Setting texture for different types of bots using a variable from the signal bus
+		mp.stream = billy_mp
 		speed = 8.5
 	elif SignalBus.type == 3:
 		sprite.texture = kitty_img
