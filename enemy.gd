@@ -25,6 +25,9 @@ func _ready() -> void:
 		mp.stream = kitty_mp
 		speed = 6.0
 	mp.play() #plays the audio
+	SignalBus.enemydie.connect(_on_death)
+func _on_death():
+	queue_free()
 func set_target_pos(targetpos):
 		navagent.set_target_position(targetpos)
 func _physics_process(delta: float) -> void:

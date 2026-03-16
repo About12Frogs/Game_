@@ -6,19 +6,23 @@ var mouse_active = true
 const SPEED = 5.0
 var relative_speed = SPEED
 const JUMP_VELOCITY = 6
-const MOUSE_SENS = 0.01
+const FRICTION = 5
+var sens = 0.005
 func _ready() -> void:
 	SignalBus.enemydie.connect(_on_enemydie)
 	SignalBus.un_die.connect(_on_un_die)
 	SignalBus.menu_open.connect(_on_menu_open)
 	SignalBus.menu_close.connect(_on_menu_close)
-
+	SignalBus.settings_open.connect(_on_settings_open)
+	SignalBus.settings_close.connect(_on_settings_close)
 	
 func _on_enemydie():
 	alive = false
 func _on_un_die():
 	alive = true
 func _physics_process(delta: float) -> void:
+	if SignalBus.sensitivity:
+		sens = SignalBus.sensitivity / 5000
 	if alive:
 		# Add the gravity.
 		if not is_on_floor():
@@ -40,23 +44,26 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction.x * relative_speed
 			velocity.z = direction.z * relative_speed
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED  * delta)
-			velocity.z = move_toward(velocity.z, 0, SPEED * delta)
+			if is_on_floor():
+				velocity.x = move_toward(velocity.x, 0, SPEED  * delta * FRICTION)
+				velocity.z = move_toward(velocity.z, 0, SPEED * delta * FRICTION)
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED  * delta)
+				velocity.z = move_toward(velocity.z, 0, SPEED * delta)
 	
 	move_and_slide()
 func _on_menu_open():
 	mouse_active = false
+func _on_settings_open():
+	mouse_active = false
 func _on_menu_close():
+	mouse_active = true
+func _on_settings_close():
 	mouse_active = true
 func _input(event: InputEvent) -> void:
 	if alive and mouse_active:
-		if Input.is_action_just_pressed("ui.exit"):
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode =Input.MOUSE_MODE_CAPTURED
-		
+		Input.mouse_mode =Input.MOUSE_MODE_CAPTURED
 		if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			rotate_y(-event.relative.x * MOUSE_SENS)
-			neck.rotate_x(-event.relative.y * MOUSE_SENS)
+			rotate_y(-event.relative.x * sens)
+			neck.rotate_x(-event.relative.y * sens)
 		neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-60),deg_to_rad(70))
-		

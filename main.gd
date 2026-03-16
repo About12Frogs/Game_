@@ -8,14 +8,19 @@ const ui = preload("res://ui.tscn")
 const player = preload("res://player.tscn")
 const debug = preload("res://debug_instantiation.tscn")
 const menu = preload("res://nextbot_menu.tscn")
+const setting = preload("res://settings.tscn")
 @onready var playerpos = $player
 
 func _ready() -> void:
 	SignalBus.enemydie.connect(_on_enemydie)
 	SignalBus.chosen_bot.connect(_on_bot_chosen)
 	SignalBus.un_die.connect(_on_respawn)
+	SignalBus.settings_open.connect(_on_settings_open)
 	playerpos.global_position = Vector3(0, 1, 0)
 	playerpos.global_rotation_degrees = Vector3(0, 180, 0)
+func _on_settings_open():
+	var settings = setting.instantiate()
+	add_child(settings)
 func _physics_process(delta: float) -> void:
 	get_tree().call_group("enemies", "set_target_pos", playerpos.global_transform.origin)
 
@@ -27,6 +32,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("delete"):
 		is_spawned = false
 		timer_active = false
+
 func _unhandled_input(event: InputEvent) -> void:
 	if player_alive:
 		if opened == false:
@@ -40,6 +46,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if !Input.is_action_pressed("open"):
 				opened = false
 				SignalBus.menu_close.emit()
+
+
 func _on_bot_chosen(bot:int):
 	var enemyg = enemys.instantiate()
 	add_child(enemyg)
@@ -52,8 +60,9 @@ func _on_respawn():
 	player_alive = true
 
 func _on_enemydie():
-	var uig = ui.instantiate()
-	add_child(uig)
+	if player_alive:
+		var uig = ui.instantiate()
+		add_child(uig)
 	is_spawned = false
 	playerpos.global_position = Vector3(0, 1, 0)
 	playerpos.global_rotation_degrees = Vector3(0, 180, 0)

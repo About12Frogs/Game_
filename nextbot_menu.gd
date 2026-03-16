@@ -18,8 +18,6 @@ func _ready() -> void:
 	
 func _on_menu_close():
 	queue_free() 
-"lebron1 billy2 cat3"
-
 func _on_death():
 	queue_free()
 func _on_lebron_pressed():

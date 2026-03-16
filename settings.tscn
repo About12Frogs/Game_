@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://byu4wovyw8qtc"]
+[gd_scene load_steps=4 format=3 uid="uid://byu4wovyw8qtc"]
+
+[ext_resource type="Script" uid="uid://dyn1nvlptfjhx" path="res://settings.gd" id="1_nkug2"]
+[ext_resource type="Script" uid="uid://cmfcux44kjmr0" path="res://h_slider.gd" id="1_x2hje"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwo76"]
+font_size = 64
 
 [node name="settings" type="Control"]
 layout_mode = 3
@@ -7,3 +13,64 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nkug2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_jwo76")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -15.5
+offset_right = 64.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return to game"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 56.0
+offset_right = 150.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x2hje")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = 51.0
+offset_right = -151.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sensitivity"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="HSlider" to="HSlider" method="_on_value_changed"]
