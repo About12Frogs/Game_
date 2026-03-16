@@ -1467,6 +1467,12 @@ transform = Transform3D(-4.37114e-08, -2.92764, 0, 1, -1.27971e-07, 0, 0, 0, 17.
 use_collision = true
 material = ExtResource("2_wetts")
 
+[node name="path4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, -2.92764, 0, 1, -1.27971e-07, 0, 0, 0, 17.2631, 23.2642, 3.02953, 8.88908)
+use_collision = true
+size = Vector3(1, 1, 1.97882)
+material = ExtResource("2_wetts")
+
 [node name="path3" type="CSGBox3D" parent="."]
 transform = Transform3D(1.91069e-15, 1.27971e-07, 17.2631, 1, -1.27971e-07, 0, 4.37114e-08, 2.92764, -7.54593e-07, 15.3816, 3.02953, -6.71826)
 use_collision = true
